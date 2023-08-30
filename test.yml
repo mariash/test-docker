@@ -1,0 +1,12 @@
+---
+platform: linux
+
+image_resource:
+  type: registry-image
+  source:
+    repository: cloudfoundry/tas-runtime-build
+    tag: {{go_version}}
+
+run:
+  path: go
+  args: [version]
