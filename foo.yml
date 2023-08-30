@@ -5,10 +5,18 @@ jobs:
     - get: test-docker
     - load_var: go_version
       file: test-docker/version
+    - get: tagged-image
     - task: test
+      image: tagged-image
       file: test-docker/test.yml
 
+
 resources:
+- name: tagged-image
+  type: registry-image
+  source:
+    repository: cloudfoundry/tas-runtime-build
+    tag: ((.:go_version))
 - name: test-docker
   type: git
   source:
