@@ -1,0 +1,16 @@
+jobs:
+- name: foo
+  plan:
+  - do:
+    - get: test-docker
+    - load_var: go_version
+      file: test-docker/version
+    - task: test
+      file: test-docker/test.yml
+
+resources:
+- name: test-docker
+  type: git
+  source:
+    uri: https://github.com/mariash/test-docker.git
+    branch: master
